@@ -7,6 +7,11 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideZonelessChangeDetection()
   ]
-}).catch((err) => console.error(err));
+}).then(() => {
+  console.log('Cyberpunk RED Interface // Bootstrapped Successfully');
+}).catch((err) => {
+  console.error('CRITICAL ERROR // SYSTEM HALT', err);
+  document.body.innerHTML += `<div style="color:red; padding:20px; font-family:monospace;">SYSTEM ERROR: ${err.message}</div>`;
+});
 
 // AI Studio always uses an `index.tsx` file for all project types.
