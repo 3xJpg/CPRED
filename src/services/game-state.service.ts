@@ -35,8 +35,15 @@ export class GameStateService {
     return [...this.combatants()].sort((a, b) => b.initiative - a.initiative);
   });
 
+  private generateId(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   addCombatant(combatant: Omit<Combatant, 'id'>) {
-    const newCombatant = { ...combatant, id: crypto.randomUUID() };
+    const newCombatant = { ...combatant, id: this.generateId() };
     this.combatants.update(list => [...list, newCombatant]);
     this.addLog(`Added ${combatant.name} to initiative.`, 'combat');
   }
