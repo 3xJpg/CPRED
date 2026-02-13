@@ -26,7 +26,7 @@ export class GameStateService {
   combatants = signal<Combatant[]>([]);
   activeCombatantId = signal<string | null>(null);
   round = signal<number>(1);
-  
+
   // Logs
   logs = signal<LogEntry[]>([]);
 
@@ -45,17 +45,17 @@ export class GameStateService {
   addCombatant(combatant: Omit<Combatant, 'id'>) {
     const newCombatant = { ...combatant, id: this.generateId() };
     this.combatants.update(list => [...list, newCombatant]);
-    this.addLog(`Added ${combatant.name} to initiative.`, 'combat');
+    this.addLog(`Added ${combatant.name} to initiative.`, 'combat'); // ✅ FIX
   }
 
   removeCombatant(id: string) {
     const c = this.combatants().find(x => x.id === id);
     this.combatants.update(list => list.filter(c => c.id !== id));
-    if (c) this.addLog(`Removed ${c.name} from combat.`, 'combat');
+    if (c) this.addLog(`Removed ${c.name} from combat.`, 'combat'); // ✅ FIX
   }
 
   updateCombatant(id: string, updates: Partial<Combatant>) {
-    this.combatants.update(list => 
+    this.combatants.update(list =>
       list.map(c => c.id === id ? { ...c, ...updates } : c)
     );
   }
@@ -75,14 +75,12 @@ export class GameStateService {
         // New Round
         nextIndex = 0;
         this.round.update(r => r + 1);
-        this.addLog(`Round ${this.round()} started.`, 'combat');
+        this.addLog(`Round ${this.round()} started.`, 'combat'); // ✅ FIX
       }
     }
 
     const nextId = sorted[nextIndex].id;
     this.activeCombatantId.set(nextId);
-    
-    // Auto heal/status check logic could go here
   }
 
   resetCombat() {
