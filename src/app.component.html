@@ -1,0 +1,51 @@
+<div class="h-screen w-screen flex flex-col overflow-hidden bg-black text-[#e0e0e0]">
+  <!-- Header -->
+  <header class="h-16 border-b border-[#333] flex items-center px-6 justify-between bg-[#0a0a0a] z-20">
+    <div class="flex items-center gap-3">
+        <div class="text-[#ff3e3e] text-3xl font-black tracking-tighter" style="font-family: 'Orbitron', sans-serif;">
+            CP<span class="text-white">RED</span>//<span class="text-[#fcee0a]">GM</span>
+        </div>
+        <div class="h-6 w-[1px] bg-[#333]"></div>
+        <div class="text-[#666] text-xs font-mono hidden md:block">
+            SESSION_MANAGER_V.1.0 // CONNECTED
+        </div>
+    </div>
+    
+    <div class="flex gap-4 text-xs font-mono text-[#444]">
+        <span>NET: <span class="text-[#00f0ff]">ONLINE</span></span>
+        <span>SEC: <span class="text-[#ff3e3e]">COMPROMISED</span></span>
+    </div>
+  </header>
+
+  <!-- Main Content Grid -->
+  <main class="flex-grow p-4 gap-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 overflow-hidden z-20">
+    
+    <!-- Left Column: Initiative (Takes more space on desktop) -->
+    <div class="md:col-span-1 lg:col-span-1 h-full min-h-[400px]">
+        <app-initiative-tracker></app-initiative-tracker>
+    </div>
+
+    <!-- Middle Column: Generator & Scratchpad -->
+    <div class="md:col-span-1 lg:col-span-2 h-full flex flex-col gap-4">
+        <!-- Generator takes top half -->
+        <div class="flex-grow min-h-[300px]">
+            <app-generator></app-generator>
+        </div>
+        
+        <!-- Quick Notes (Simple Text Area) -->
+        <div class="h-1/3 bg-[#1a1a1a] border border-[#333] p-2 flex flex-col cp-border">
+            <h3 class="text-sm text-[#666] uppercase font-bold tracking-wider mb-2">DATATERM // NOTES</h3>
+            <textarea 
+                class="flex-grow bg-[#0a0a0a] text-[#00f0ff] font-mono text-sm p-2 border border-[#333] focus:border-[#00f0ff] outline-none resize-none"
+                placeholder="Type session notes here..."
+            ></textarea>
+        </div>
+    </div>
+
+    <!-- Right Column: Dice Roller -->
+    <div class="md:col-span-1 lg:col-span-1 h-full min-h-[300px]">
+        <app-dice-roller></app-dice-roller>
+    </div>
+
+  </main>
+</div>

@@ -1,0 +1,5 @@
+{
+  "name": "Cyberpunk RED: GM Interface",
+  "description": "A comprehensive session management tool for Cyberpunk RED Game Masters. Features initiative tracking, dice rolling, and offline random content generation.",
+  "requestFramePermissions": []
+}
